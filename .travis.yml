@@ -7,22 +7,18 @@ php:
 matrix:
   include:
     - php: 7.0
-      env: COMPOSER_FLAGS="--prefer-lowest" STATIC_ANALYSIS=no PHAN=yes
+      env: COMPOSER_FLAGS="--prefer-lowest" PHAN=yes
     - php: 7.1
-      env: COMPOSER_FLAGS="--prefer-lowest" STATIC_ANALYSIS=no PHAN=yes
+      env: COMPOSER_FLAGS="--prefer-lowest" PHAN=yes
     - php: 7.2
-      env: COMPOSER_FLAGS="--prefer-lowest" STATIC_ANALYSIS=no PHAN=yes
+      env: COMPOSER_FLAGS="--prefer-lowest" PHAN=yes
 before_script:
   - if [ "$PHAN" != "" ]; then mkdir setup; curl -L https://raw.githubusercontent.com/phan/phan/master/tests/travis_setup.sh -o setup/travis_setup.sh; bash setup/travis_setup.sh;  fi;
   - if [ "$PHAN" != "" ]; then mkdir /tmp/opcache || true; echo -e 'opcache.enable_cli=1\nopcache.file_cache=/tmp/opcache' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini; fi;
-  - composer validate
-  - composer self-update
-  - composer update --no-interaction ${COMPOSER_FLAGS}
-  - if [ "$STATIC_ANALYSIS" != "" ]; then curl -L https://github.com/phpstan/phpstan/releases/download/0.8/phpstan.phar -o phpstan.phar; fi;
   - if [ "$PHAN" != "" ]; then curl -L https://github.com/phan/phan/releases/download/0.12.0/phan.phar -o phan.phar; fi;
+  - composer install --no-interaction ${COMPOSER_FLAGS}
 script:
   - vendor/bin/phpunit
-  - if [ "$STATIC_ANALYSIS" != "" ]; then php phpstan.phar analyse --level=4 src; fi;
   - if [ "$PHAN" != "" ]; then php phan.phar; fi;
 cache:
   directories:
