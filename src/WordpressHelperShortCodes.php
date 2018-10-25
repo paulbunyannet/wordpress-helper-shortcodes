@@ -26,4 +26,17 @@ class WordpressHelperShortCodes
         return null;
     }
 
+    /**
+     * @param $attributes
+     * @param null $content
+     * @param null $tag
+     * @return mixed
+     */
+    public static function getBlogInfo($attributes, $content = null, $tag = null)
+    {
+        $attr = shortcode_atts(['key' => '', 'filter' => ''], $attributes);
+        /** @var string $key */
+        /** @var string $filter */
+        return get_bloginfo($attr['key'], $attr['filter']);
+    }
 }
