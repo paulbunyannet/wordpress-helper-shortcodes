@@ -39,5 +39,4 @@ class WordpressHelperShortCodes
         /** @var string $filter */
         return get_bloginfo($attr['key'], $attr['filter']);
     }
-
 }

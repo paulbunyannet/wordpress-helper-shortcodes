@@ -23,6 +23,7 @@ function env($key, $default = null)
 }
 
 /**
+
  * Mock version of shortcode_atts
  * @param $pairs
  * @param $atts
@@ -54,6 +55,7 @@ function get_bloginfo($show = '', $filter = 'raw' )
  * Class WordpressHelperShortCodeTest
  * @backupGlobals disabled
  */
+
 class WordpressHelperShortCodesTest extends \PHPUnit\Framework\TestCase
 {
 
@@ -98,6 +100,7 @@ class WordpressHelperShortCodesTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertNull(WordpressHelperShortCodes::getEnv([]));
     }
+
 
     /**
      * Test getting blog info
