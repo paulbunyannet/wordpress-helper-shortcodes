@@ -1,5 +1,7 @@
 <?php
-use PHPUnit\Framework\TestCase;
+
+use PHPUnit_Framework_TestCase;
+
 /**
  * Mock version of add_shortcode
  * @param $tag
@@ -30,7 +32,7 @@ function env($key, $default = null)
  * Class WordpressHelperShortCodeTest
  * @backupGlobals disabled
  */
-class WordpressHelperShortCodesTest extends TestCase
+class WordpressHelperShortCodesTest extends PHPUnit_Framework_TestCase
 {
 
     /** @var \Mockery\MockInterface $functions */
