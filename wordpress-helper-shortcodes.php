@@ -39,3 +39,19 @@ add_shortcode('env', 'wp_helper_sc_get_env');
 function wp_helper_sc_get_env($attributes, $content = null, $tag = null) {
    return WordpressHelperShortCodes::getEnv($attributes, $content, $tag);
 }
+
+/**
+ * Blog Info shortcode
+ */
+
+add_shortcode('bloginfo', [$bootstrap, 'wp_helper_sc_blog_info']);
+
+/**
+ * @param $attributes
+ * @param null $content
+ * @param null $tag
+ * @return string|null
+ */
+function wp_helper_sc_blog_info($attributes, $content = null, $tag = null) {
+    return WordpressHelperShortCodes::getBlogInfo($attributes, $content, $tag);
+}

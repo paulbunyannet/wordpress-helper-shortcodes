@@ -1,7 +1,5 @@
 <?php
 
-use PHPUnit_Framework_TestCase;
-
 /**
  * Mock version of add_shortcode
  * @param $tag
@@ -25,6 +23,30 @@ function env($key, $default = null)
 }
 
 /**
+ * Mock version of shortcode_atts
+ * @param $pairs
+ * @param $atts
+ * @param string $shortcode
+ * @return mixed
+ */
+function shortcode_atts($pairs, $atts, $shortcode = '' )
+{
+    return WordpressHelperShortCodesTest::$functions->shortcode_atts($pairs, $atts, $shortcode);
+}
+
+/**
+ * Mock version of get_bloginfo
+ * @param string $show
+ * @param string $filter
+ * @return mixed
+ */
+function get_bloginfo($show = '', $filter = 'raw' )
+{
+    return WordpressHelperShortCodesTest::$functions->get_bloginfo($show, $filter);
+}
+
+
+/**
  * Class WordpressHelperShortCodeTest
  */
 
@@ -32,7 +54,7 @@ function env($key, $default = null)
  * Class WordpressHelperShortCodeTest
  * @backupGlobals disabled
  */
-class WordpressHelperShortCodesTest extends PHPUnit_Framework_TestCase
+class WordpressHelperShortCodesTest extends \PHPUnit\Framework\TestCase
 {
 
     /** @var \Mockery\MockInterface $functions */
@@ -75,6 +97,20 @@ class WordpressHelperShortCodesTest extends PHPUnit_Framework_TestCase
     public function testWpHelperScGetEnvWithMissingAttribute()
     {
         $this->assertNull(WordpressHelperShortCodes::getEnv([]));
+    }
+
+    /**
+     * Test getting blog info
+     * @test
+     */
+    public function testWpHelperScGetBlogInfo()
+    {
+        $key = 'foo';
+        $value = 'bar';
+        self::$functions->shouldReceive('shortcode_atts')->once()->withAnyArgs()->andReturn(['key' => $key, 'filter' => '']);
+        self::$functions->shouldReceive('get_bloginfo')->once()->withArgs([$key, ''])->andReturn($value);
+        $this->assertSame($value, WordpressHelperShortCodes::getBlogInfo(['key' => $key, 'filter' => '']));
+
     }
 
 }
