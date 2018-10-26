@@ -34,7 +34,7 @@ class WordpressHelperShortCodes
      */
     public static function getBlogInfo($attributes, $content = null, $tag = null)
     {
-        $attr = shortcode_atts(['key' => '', 'filter' => ''], $attributes);
+        $attr = shortcode_atts(['key' => 'name', 'filter' => 'raw'], $attributes);
         /** @var string $key */
         /** @var string $filter */
         return get_bloginfo($attr['key'], $attr['filter']);
