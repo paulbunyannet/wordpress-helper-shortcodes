@@ -1,6 +1,8 @@
 # wordpress-helper-shortcodes
 Helper shortcodes used from project to project
 
+[![Build Status](https://travis-ci.org/paulbunyannet/wordpress-helper-shortcodes.svg?branch=master)](https://travis-ci.org/paulbunyannet/wordpress-helper-shortcodes)
+
 ## Shortcodes
 
 ### [env]
