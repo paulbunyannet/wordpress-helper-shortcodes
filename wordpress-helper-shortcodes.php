@@ -44,7 +44,7 @@ function wp_helper_sc_get_env($attributes, $content = null, $tag = null) {
  * Blog Info shortcode
  */
 
-add_shortcode('bloginfo', ['wp_helper_sc_blog_info']);
+add_shortcode('bloginfo', 'wp_helper_sc_blog_info');
 
 /**
  * @param $attributes
