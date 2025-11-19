@@ -1,3 +1,5 @@
+This repo is archived and moved over to [https://gitlab.pbndev.net/web-open/wordpress-helper-shortcodes](https://gitlab.pbndev.net/web-open/wordpress-helper-shortcodes)
+
 # wordpress-helper-shortcodes
 Helper shortcodes used from project to project
 
